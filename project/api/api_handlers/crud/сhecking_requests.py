@@ -4,6 +4,11 @@ import re
 logger = logging.getLogger(__name__)
 
 
+def admin_actions(query_rel):
+    if query_rel["login"] == "admin":
+        logger.info("The admin tried to update his rights? No! You're the admin!")
+
+
 async def check_query_create(query_rel):
     logger.debug("Start checking parameters /create")
     try:
@@ -23,18 +28,23 @@ async def check_query_create(query_rel):
             if i not in query_rel:
                 logger.debug("Check for parameters in the request failed")
                 return False
-        logger.debug("Request parameters checked")
-
         # CHECK permission
-        permission = int(query_rel[check_keys[-1]])
-        if permission <= 2 and permission >= 0:
-            logger.debug("Verification of the permission request is successful")
-            return True
-        else:
-            logger.debug(
-                f"Permission request verification failed. permission: {permission}"
-            )
+        try:
+            permission = int(query_rel[check_keys[-1]])
+            if permission <= 2 and permission >= 0:
+                logger.debug("Verification of the permission request is successful")
+                return True
+            else:
+                logger.debug(
+                    f"Permission request verification failed. permission: {permission}"
+                )
+                return False
+        except KeyError:
             return False
+        except ValueError:
+            return False
+        logger.debug("Request parameters checked")
+        return True
     except Exception as err:
         logger.exception(str(err))
 
@@ -75,6 +85,27 @@ async def check_query_update(query_rel):
             if i not in query_rel:
                 logger.debug("Check for parameters in the request failed")
                 return False
+        # CHECK permission
+        try:
+            permission = int(query_rel[check_keys[-1]])
+            if permission <= 2 and permission >= 0:
+                logger.debug("Verification of the permission request is successful")
+                return True
+            else:
+                logger.debug(
+                    f"Permission request verification failed. permission: {permission}"
+                )
+                return False
+        except KeyError:
+            return False
+        except ValueError:
+            return False
+        # admin
+        if query_rel["login"] == "admin":
+            logger.info(
+                "The admin tried to update his permission? No! You're the admin!"
+            )
+            return False
         logger.debug("All parameters are checked")
         return True
     except Exception as err:
@@ -91,6 +122,10 @@ async def check_query_delete(query_rel):
         check_keys = "login"
         if check_keys not in query_rel:
             logger.debug("Check for parameters in the request failed")
+            return False
+        # admin
+        if query_rel["login"] == "admin":
+            logger.info("Is the admin trying to delete himself? Don't be ridiculous!")
             return False
         logger.debug("All parameters are checked")
         return True

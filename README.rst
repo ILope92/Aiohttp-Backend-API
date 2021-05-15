@@ -15,8 +15,7 @@ Backend API (CRUD).
 .. code-block:: shell
 
     	docker-compose build
-	docker-compose run app alembic upgrade head
-	docker-compose run app alembic upgrade head
+	docker-compose run app sleep 5 && alembic upgrade head
 	docker-compose up
 
 Будет открыт доступ по хосту:

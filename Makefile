@@ -42,11 +42,10 @@ sdist: clean
 
 compose:
 	docker-compose build
-	docker-compose run app alembic upgrade head
-	docker-compose run app alembic upgrade head
+	docker-compose run app sleep 5 && alembic upgrade head
 	docker-compose up
 
-cleanedb: clean
+cleandb: clean
 	sudo rm -rf pg_data
 
 docker: sdist

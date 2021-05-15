@@ -19,6 +19,10 @@ Backend API (CRUD).
 	docker-compose run app alembic upgrade head
 	docker-compose up
 
+Будет открыт доступ по хосту:
+
+* http://127.0.0.1:3000/
+
 Разработка
 ==========
 

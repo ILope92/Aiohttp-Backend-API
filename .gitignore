@@ -8,3 +8,4 @@ __pycache__/
 dist
 project.egg-info
 pg_data
+.vscode

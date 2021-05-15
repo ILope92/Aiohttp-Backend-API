@@ -10,13 +10,11 @@ Backend API (CRUD).
 
     make compose
 
-Будут совершены команды:
+Но можно и так:
 
 .. code-block:: shell
 
-    	docker-compose build
-	docker-compose run app sleep 5 && alembic upgrade head
-	docker-compose up
+    	docker-compose up --build
 
 Будет открыт доступ по хосту:
 

@@ -41,9 +41,7 @@ sdist: clean
 	python3 setup.py sdist
 
 compose:
-	docker-compose build
-	docker-compose run app sleep 5 && alembic upgrade head
-	docker-compose up
+	docker-compose up --build
 
 cleandb: clean
 	sudo rm -rf pg_data

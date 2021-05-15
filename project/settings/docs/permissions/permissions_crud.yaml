@@ -1,0 +1,5 @@
+CRUD:
+  hand_create: [2]
+  hand_read: [1,2]
+  hand_update: [2]
+  hand_delete: [2]

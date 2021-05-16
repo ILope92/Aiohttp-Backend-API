@@ -23,10 +23,13 @@ Backend API (CRUD).
 -----------------------------------------
 
 С помощью docker-compose:
-* :shell: docker-compose up --build -d
+
+:shell: docker-compose up --build -d
 
 С помощью make:
-* :shell: make compose
+
+:shell: make compose
+
 
 Это запутсит два контейнера:
 - postgres
@@ -36,19 +39,23 @@ Backend API (CRUD).
 ---------------
 
 В контейнере:
-* :shell: docker-compose run app alembic upgrade head
+
+:shell: docker-compose run app alembic upgrade head
 
 По адресу:
-* :shell: python3.8 project/db --pg-url postgresql://admin:admin@0.0.0.0:5442/simalend upgrade head
+
+:shell: python3.8 project/db --pg-url postgresql://admin:admin@0.0.0.0:5442/simalend upgrade head
 
 Как очистить базу данных полученную с контейнера?
 -----------------------------------------
 
 С помощью make:
-* :shell: make cleandb
+
+:shell: make cleandb
 
 После запуска
 ==========
+
 Будет открыт доступ по хосту:
 ---------------
 * http://127.0.0.1:3000/

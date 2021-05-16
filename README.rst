@@ -8,11 +8,11 @@ Backend API (CRUD).
 -----------------------------------------
 С помощью docker-compose:
 
-* :shell: docker-compose -f docker-compose-dev.yaml up --build
+:shell: docker-compose -f docker-compose-dev.yaml up --build
 
 С помощью make:
 
-* :shell: make compose-dev
+:shell: make compose-dev
 
 Это запутсит три контейнера:
 - postgres

@@ -44,8 +44,8 @@ sdist: clean
 compose-dev:
 	sudo docker-compose -f docker-compose-dev.yaml up --build
 
-compose-prod:
-	sudo docker-compose -f docker-compose-prd.yaml up --build -d
+compose:
+	sudo docker-compose up --build -d
 
 cleandb: clean
 	sudo rm -rf pg_data

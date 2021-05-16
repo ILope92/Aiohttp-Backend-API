@@ -7,6 +7,7 @@ Backend API (CRUD).
 Быстрый вариант разворачивания в Docker
 -----------------------------------------
 С помощью docker-compose:
+
 * :shell: docker-compose -f docker-compose-dev.yaml up --build
 С помощью make:
 * :shell: make compose-dev
@@ -23,15 +24,20 @@ Backend API (CRUD).
 * :shell: docker-compose up --build -d
 
 С помощью make:
-* :shell: make compose-prod
+* :shell: make compose
 
 Это запутсит два контейнера:
 - postgres
 - application
 
 Чтобы применить миграции нужно выполнить:
+---------------
 
+В контейнере:
 * :shell: docker-compose run app alembic upgrade head
+
+По адресу:
+* :shell: python3.8 project/db --pg-url postgresql://admin:admin@0.0.0.0:5442/simalend upgrade head
 
 Как очистить базу данных полученную с контейнера?
 -----------------------------------------
@@ -42,7 +48,7 @@ Backend API (CRUD).
 После запуска
 ==========
 Будет открыт доступ по хосту:
-
+---------------
 * http://127.0.0.1:3000/
 
 Swagger документация
@@ -55,15 +61,15 @@ Swagger документация
 
 Быстрые команды
 ---------------
-* :shell:`make` Отобразить список доступных команд
-* :shell:`make devenv` Создать и настроить виртуальное окружение для разработки
-* :shell:`make postgres` Поднять Docker-контейнер с PostgreSQL
-* :shell:`make clean` Удалить файлы, созданные модулем `distutils`_
-* :shell:`make sdist` Создать `source distribution`_
-* :shell:`make docker` Собрать Docker-образ
-* :shell:`make upload` Загрузить Docker-образ на hub.docker.com
-* :shell:`make compose` Собрать и запустить проект в Docker
-* :shell:`make cleanedb` очистить базу данных контейнера
+* :shell: `make` Отобразить список доступных команд
+* :shell: `make devenv` Создать и настроить виртуальное окружение для разработки
+* :shell: `make postgres` Поднять Docker-контейнер с PostgreSQL
+* :shell: `make clean` Удалить файлы, созданные модулем `distutils`_
+* :shell: `make sdist` Создать `source distribution`_
+* :shell: `make docker` Собрать Docker-образ
+* :shell: `make upload` Загрузить Docker-образ на hub.docker.com
+* :shell: `make compose` Собрать и запустить проект в Docker
+* :shell: `make cleanedb` очистить базу данных контейнера
 
 
 .. _distutils: https://docs.python.org/3/library/distutils.html
@@ -108,13 +114,15 @@ Swagger документация
 -----------------------------------------
 .. code-block:: shell
 
-    python app_run.py -H 192.168.0.1 -P 2020 -D \
+    python3.8 app_run.py -H 127.0.0.12 -P 2414 -D \
     --pg-url postgresql://admin:admin@0.0.0.0:5442/simalend
 
 Применение миграции через обертку:
 -----------------------------------------
 .. code-block:: shell
 
-    python3.8 project/db --pg-url postgresql://admin:admin@0.0.0.0:5432/simalend upgrade head
+    python3.8 project/db --pg-url postgresql://admin:admin@0.0.0.0:5442/simalend upgrade head
+
+Эту команду не следует запускать по root. Возможна ошибка.
 
 Все эти команды дадут возможность сконфигурировать приложение нужным образом.

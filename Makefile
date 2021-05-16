@@ -19,11 +19,12 @@ clean:
 devenv: clean
 	rm -rf env
 	# создаем новое окружение
+	apt-get install python3-venv
 	python3.8 -m venv env
-	python3.8 -m pip install pip --upgrade
-	python3.8 -m pip install wheel
+	env/bin/python3.8 -m pip install pip --upgrade
+	env/bin/python3.8 -m pip install wheel
 	# ставим зависимости
-	python3.8 -m pip install -r requirements.txt
+	env/bin/python3.8 -m pip install -r requirements.txt
 
 
 postgres:
@@ -40,8 +41,11 @@ migrate:
 sdist: clean
 	python3 setup.py sdist
 
-compose:
-	docker-compose up --build
+compose-dev:
+	sudo docker-compose -f docker-compose-dev.yaml up --build
+
+compose-prod:
+	sudo docker-compose -f docker-compose-prd.yaml up --build -d
 
 cleandb: clean
 	sudo rm -rf pg_data

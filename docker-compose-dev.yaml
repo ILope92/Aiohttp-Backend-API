@@ -33,6 +33,4 @@ services:
             - db
         environment:
             POSTGRES_HOST: postgresql://admin:admin@db:5432/simalend
-        entrypoints:
-            
         restart: always

@@ -33,8 +33,7 @@ def create_app(conn_db=None) -> Application:
         if isinstance(conn_db, bool):
             app.on_startup.append(init_pg)
         else:
-            print(conn_db)
-            app["settings_db"] = conn_db
+            app["pg_url"] = conn_db
             app.on_startup.append(pg_args_settings)
         app.on_cleanup.append(close_pg)
         logger.info("The app is built")

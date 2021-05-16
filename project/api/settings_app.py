@@ -23,15 +23,7 @@ async def init_pg(app):
 async def pg_args_settings(app):
     try:
         logger.info("Start of data base initialization")
-        settings = app["settings_db"]
-        db_url = "postgresql://{0}:{1}@{2}:{3}/{4}".format(
-            settings["login"],
-            settings["password"],
-            settings["host"],
-            settings["port"],
-            settings["database"],
-        )
-
+        db_url = app["pg_url"]
         logger.info(f"Connect to {db_url}")
         engine = create_engine(db_url)
         app["db"] = engine

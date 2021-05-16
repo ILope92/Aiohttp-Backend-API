@@ -3,7 +3,7 @@ import logging
 from aiohttp.web import Application
 from aiohttp_swagger import setup_swagger
 from project.api.routes import setup_routes
-from project.api.settings_app import close_pg, init_pg
+from project.api.settings_app import close_pg, init_pg, pg_args_settings
 from project.settings.load_settings import Settings
 
 logger = logging.getLogger(__name__)
@@ -20,7 +20,7 @@ def swagger_path():
         logger.exception(str(err))
 
 
-def create_app() -> Application:
+def create_app(conn_db=None) -> Application:
     try:
         logger.info("Getting started with app creation")
         app = Application()
@@ -30,7 +30,12 @@ def create_app() -> Application:
         # Setup routes
         setup_routes(app)
         # Connect and close database
-        app.on_startup.append(init_pg)
+        if isinstance(conn_db, bool):
+            app.on_startup.append(init_pg)
+        else:
+            print(conn_db)
+            app["settings_db"] = conn_db
+            app.on_startup.append(pg_args_settings)
         app.on_cleanup.append(close_pg)
         logger.info("The app is built")
         return app

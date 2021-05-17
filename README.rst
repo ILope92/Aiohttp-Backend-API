@@ -75,16 +75,12 @@ Swagger документация
       `make` Отобразить список доступных команд
       `make devenv` Создать и настроить виртуальное окружение для разработки
       `make postgres` Поднять Docker-контейнер с PostgreSQL
-      `make clean` Удалить файлы, созданные модулем `distutils`_
-      `make sdist` Создать `source distribution`_
+      `make clean` Удалить файлы, созданные модулем `distutils`
+      `make sdist` Создать `source distribution`
       `make docker` Собрать Docker-образ
       `make upload` Загрузить Docker-образ на hub.docker.com
       `make compose` Собрать и запустить проект в Docker
       `make cleanedb` очистить базу данных контейнера
-
-
-.. _distutils: https://docs.python.org/3/library/distutils.html
-.. _source distribution: https://packaging.python.org/glossary/
 
 Как подготовить окружение для разработки?
 -----------------------------------------

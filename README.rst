@@ -70,15 +70,16 @@ Swagger документация
 
 Быстрые команды
 ---------------
-:shell: `make` Отобразить список доступных команд
-:shell: `make devenv` Создать и настроить виртуальное окружение для разработки
-* :shell: `make postgres` Поднять Docker-контейнер с PostgreSQL
-* :shell: `make clean` Удалить файлы, созданные модулем `distutils`_
-* :shell: `make sdist` Создать `source distribution`_
-* :shell: `make docker` Собрать Docker-образ
-* :shell: `make upload` Загрузить Docker-образ на hub.docker.com
-* :shell: `make compose` Собрать и запустить проект в Docker
-* :shell: `make cleanedb` очистить базу данных контейнера
+.. code-block:: shell
+      `make` Отобразить список доступных команд
+      `make devenv` Создать и настроить виртуальное окружение для разработки
+      `make postgres` Поднять Docker-контейнер с PostgreSQL
+      `make clean` Удалить файлы, созданные модулем `distutils`_
+      `make sdist` Создать `source distribution`_
+      `make docker` Собрать Docker-образ
+      `make upload` Загрузить Docker-образ на hub.docker.com
+      `make compose` Собрать и запустить проект в Docker
+      `make cleanedb` очистить базу данных контейнера
 
 
 .. _distutils: https://docs.python.org/3/library/distutils.html

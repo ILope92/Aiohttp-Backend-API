@@ -70,8 +70,8 @@ Swagger документация
 
 Быстрые команды
 ---------------
-* :shell: `make` Отобразить список доступных команд
-* :shell: `make devenv` Создать и настроить виртуальное окружение для разработки
+:shell: `make` Отобразить список доступных команд
+:shell: `make devenv` Создать и настроить виртуальное окружение для разработки
 * :shell: `make postgres` Поднять Docker-контейнер с PostgreSQL
 * :shell: `make clean` Удалить файлы, созданные модулем `distutils`_
 * :shell: `make sdist` Создать `source distribution`_

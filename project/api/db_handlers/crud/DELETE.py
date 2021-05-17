@@ -11,7 +11,7 @@ async def delete_user(session, query_rel):
         # open session
         with session() as session:
             with session.begin():
-                delete = await _query_db(session, query_rel)
+                delete = _query_db(session, query_rel)
                 if delete is False:
                     return False
                 logger.debug("The deletion was successful")
@@ -24,12 +24,12 @@ async def _query_db(session, query_rel):
     # search user
     logger.debug("Getting user objects and their permission")
     try:
-        user = session.query(User).filter(User.login == query_rel["login"]).first()
+        user = await session.query(User).where(User.login == query_rel["login"]).first()
         if user is None:
             logger.debug("User not found")
             return False
         # search right user.id
-        permission = session.query(Right).filter(Right.user_id == user.id).first()
+        permission = await session.query(Right).where(Right.user_id == user.id).scalar()
         # delete a user and their permission
         if user is not None and permission is not None:
             logger.debug("Deleting a user and their permission")
@@ -40,3 +40,4 @@ async def _query_db(session, query_rel):
             return False
     except Exception as err:
         logger.exception(str(err))
+        return False
